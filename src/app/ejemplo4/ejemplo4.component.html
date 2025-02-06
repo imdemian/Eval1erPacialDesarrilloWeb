@@ -1,0 +1,27 @@
+<div style="margin: 20px">
+  <h1>Ejemplo formulrios reactivos</h1>
+  <h2>Lista de tareas</h2>
+
+  <div class="col-sm-2">
+    Tarea:
+    <input type="text" [formControl]="tarea" />
+  </div>
+  <p>
+    <button type="button" class="btn btn-primary" (click)="agregrarTarea()">
+      Agregar
+    </button>
+  </p>
+
+  <ol>
+    @for (tar of listaTareas; track $index) {
+    <li>{{ tar }} <a href="#" (click)="borrarTarea($index)">¿Borrar?</a></li>
+    }
+  </ol>
+
+  <p>
+    <button type="button" class="btn btn-danger" (click)="borrarTareas()">
+      Borrar Todas
+    </button>
+  </p>
+</div>
+<router-outlet></router-outlet>

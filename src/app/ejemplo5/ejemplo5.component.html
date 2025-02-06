@@ -1,0 +1,61 @@
+<div>
+  <h1>Registro de opinión del cliente (Formulario Reactivo)</h1>
+
+  <div class="col-sm-4">
+    <form [formGroup]="formContacto" (ngSubmit)="onSubmit()">
+      <p>
+        Nombre:
+        <input type="text" class="form-control" formControlName="nombre" />
+      </p>
+      <p>
+        Email:
+        <input type="text" class="form-control" formControlName="email" />
+      </p>
+      <p>
+        ¿Es cliente registrado?
+        <input type="radio" formControlName="status" value="Si" />Si
+        <input type="radio" formControlName="status" value="No" />No
+      </p>
+      <p>
+        Municipio de procedencia:
+        <select class="form-control" formControlName="municipio">
+          <option value="Amealco">Amealco</option>
+          <option value="San Juan del Río">San Juan del Río</option>
+          <option value="Tequisquiapan">Tequisquiapan</option>
+        </select>
+      </p>
+      <p>
+        Opinión:
+        <textarea
+          class="fprm-control"
+          rows="19"
+          cols="70"
+          formControlName="opinion"
+        ></textarea>
+      </p>
+      <p>
+        <input type="checkbox" formControlName="autorización" />¿Desea compartir
+        sus datos personales?
+      </p>
+      <p>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </p>
+    </form>
+  </div>
+
+  <div>
+    @if (nombreCliente != '' && emailcliente != '' && statusCliente!='' &&
+    municipioCliente != '' && opinionCliente!= '') {
+    <h6>Datos enviados</h6>
+    Nombre del cliente: {{ nombreCliente }} <br />
+    Email: {{ emailcliente }} <br />
+    Cliente registrado: {{ statusCliente }} <br />
+    Municipio de procedencia: {{ municipioCliente }} <br />
+    Opinión: {{ opinionCliente }} <br />
+    @if (autorizacionCliente) { El cliente autoriza compartir sus datos
+    personales } @else { El cliente NO AUTORIZA compartir sus datos personales }
+    }
+  </div>
+</div>
+
+<router-outlet></router-outlet>

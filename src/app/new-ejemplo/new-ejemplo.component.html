@@ -1,0 +1,87 @@
+<div class="container">
+  <h2>Formulario de Satisfacción del Cliente</h2>
+
+  <div class="col-md-6">
+    <form [formGroup]="formFeedback" (ngSubmit)="enviarFormulario()">
+      <div class="form-group">
+        <label>Nombre Completo:</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Ingrese su nombre"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Correo Electrónico:</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="correo"
+          placeholder="Ejemplo: usuario@email.com"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>¿Es un cliente frecuente?</label><br />
+        <label class="mr-2">
+          <input type="radio" formControlName="clienteFrecuente" value="Sí" />
+          Sí
+        </label>
+        <label>
+          <input type="radio" formControlName="clienteFrecuente" value="No" />
+          No
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>Ciudad de Residencia:</label>
+        <select class="form-control" formControlName="ciudad">
+          <option value="">Seleccione una ciudad</option>
+          <option value="Querétaro">Querétaro</option>
+          <option value="Corregidora">Corregidora</option>
+          <option value="El Marqués">El Marqués</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Comentarios o Sugerencias:</label>
+        <textarea
+          class="form-control"
+          rows="4"
+          formControlName="comentarios"
+          placeholder="Escriba aquí..."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="checkbox" formControlName="permisoDatos" />
+        <label>Autorizo el uso de mis datos personales.</label>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="formFeedback.invalid"
+      >
+        Enviar Opinión
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="formularioEnviado" class="mt-4">
+    <h4>Datos Enviados</h4>
+    <p><strong>Nombre:</strong> {{ datosCliente.nombre }}</p>
+    <p><strong>Correo:</strong> {{ datosCliente.correo }}</p>
+    <p>
+      <strong>Cliente Frecuente:</strong> {{ datosCliente.clienteFrecuente }}
+    </p>
+    <p><strong>Ciudad:</strong> {{ datosCliente.ciudad }}</p>
+    <p><strong>Comentarios:</strong> {{ datosCliente.comentarios }}</p>
+    <p>
+      <strong>Autorización:</strong>
+      {{ datosCliente.permisoDatos ? "Sí" : "No" }}
+    </p>
+  </div>
+</div>
